@@ -12,6 +12,7 @@ import './App.css'
 
 function App() {
   const [vehicles, setVehicles] = useState([])
+  const [models, setModels] = useState([])
   const [isVehicleIdToEdit, setIsVehicleIdToEdit] = useState()
   const [isShowedForm, setIsShowedForm] = useState(false)
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
@@ -37,7 +38,6 @@ function App() {
       showConfirmButton: false,
       timer: 2500
     })
-    
   }
   
   const createVehicle = (data) => {
@@ -58,7 +58,7 @@ function App() {
     .then(() => {
       Swal.fire({
         icon: 'success',
-        title: 'Deleted successfully',
+        title: 'Vehicle sold successfully',
         showConfirmButton: false,
         timer: 1500
       })
@@ -93,10 +93,19 @@ function App() {
     .then((res) => setVehicles(res.data.vehicles))
     .catch((err) => console.log(err))
   }
+
+  const getAllModels = () => {
+    const URL = BASE_URL + "/models"
+
+    axios.get(URL)
+    .then((res) => setModels(res.data.models))
+    .catch((err) => console.log(err))
+  }
   
 
   useEffect(() => {
     getAllVehicles()
+    getAllModels()
   }, [])
 
 
@@ -105,9 +114,9 @@ function App() {
       <Header setIsShowedForm={setIsShowedForm} />
 
       <main className="flex-grow relative">
-        <ModalToRegister isShowedForm={isShowedForm} setIsShowedForm={setIsShowedForm} register={register} handleSubmit={handleSubmit} submit={submit} reset={reset} setIsVehicleIdToEdit={setIsVehicleIdToEdit} isVehicleIdToEdit={isVehicleIdToEdit} errors={errors} />
+        <ModalToRegister models={models} isShowedForm={isShowedForm} setIsShowedForm={setIsShowedForm} register={register} handleSubmit={handleSubmit} submit={submit} reset={reset} setIsVehicleIdToEdit={setIsVehicleIdToEdit} isVehicleIdToEdit={isVehicleIdToEdit} errors={errors} />
 
-        <VehiclesList vehicles={vehicles} deleteVehicle={deleteVehicle} handleClickEdit={handleClickEdit} />
+        <VehiclesList vehicles={vehicles} models={models} deleteVehicle={deleteVehicle} handleClickEdit={handleClickEdit} />
         
       </main>
 

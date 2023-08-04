@@ -1,7 +1,7 @@
 import React from "react";
 
 const ModalToRegister = ({
-    models,
+  models,
   isShowedForm,
   setIsShowedForm,
   register,
@@ -31,6 +31,20 @@ const ModalToRegister = ({
   const conditionOptions = ["new", "used"];
   const typeOptions = ["car", "motorcycle"];
 
+  const validateCylinderCapacity = (value) => {
+    if (parseInt(value) > 400) {
+      return "Cylinder capacity must be equal to or less than 400";
+    }
+    return true;
+  };
+
+  const validatePrice = (value) => {
+    if (parseInt(value) > 250000000) {
+      return "Price must be equal to or less than 250,000,000";
+    }
+    return true;
+  };
+
   return (
     <section
       className={`fixed top-0 left-0 bottom-0 right-0 bg-red flex bg-black/40 justify-center items-center transition-opacity z-20 ${
@@ -41,7 +55,7 @@ const ModalToRegister = ({
         onSubmit={handleSubmit(submit)}
         className="bg-white p-4 grid gap-4 rounded-md w-[300px] h-[90%] relative overflow-y-auto sm:w-[450px] sm:py-6 sm:px-8"
       >
-        <h3 className="text-2xl font-bold text-secondary-color">
+        <h3 className="text-2xl font-bold text-secondary-color text-center">
           {isVehicleIdToEdit ? "Update vehicle" : "New vehicle"}
         </h3>
 
@@ -203,9 +217,10 @@ const ModalToRegister = ({
                 message: "You have exceeded the maximum characters allowed",
               },
               minLength: {
-                value: 2,
-                message: "You must enter more than one character",
+                value: 1,
+                message: "You must enter at least one character",
               },
+              validate: validatePrice,
             })}
           />
           <span className="text-primary-color text-xs">
@@ -228,9 +243,10 @@ const ModalToRegister = ({
                 message: "You have exceeded the maximum characters allowed",
               },
               minLength: {
-                value: 2,
-                message: "You must enter more than one character",
+                value: 1,
+                message: "You must enter at least one character",
               },
+              validate: validateCylinderCapacity,
             })}
           />
           <span className="text-primary-color text-xs">

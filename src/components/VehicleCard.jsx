@@ -34,7 +34,7 @@ const VehicleCard = ({ vehicle, deleteVehicle, handleClickEdit }) => {
                     className="bg-secondary-color text-white rounded-md px-4 py-2 mr-2 w-32 hover:bg-white hover:text-secondary-color hover:shadow-md hover:shadow-secondary-color">
                         Update
                     </button>
-                    <button onClick={() => deleteVehicle(vehicle.vehicleId)}
+                    <button onClick={() => deleteVehicle(vehicle)}
                     className="bg-primary-color text-white rounded-md px-4 py-2 w-32 hover:bg-white hover:text-primary-color hover:shadow-sm hover:shadow-primary-color">
                         Sell
                     </button>

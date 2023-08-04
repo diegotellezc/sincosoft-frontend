@@ -26,6 +26,19 @@ function App() {
 
   //submit of the form
   const submit = (data) => {
+    let modelToCompare = models.find(model => model.modelName == data.model)
+    let minPrice = modelToCompare.price * 0.85
+
+    if(data.price < minPrice){
+      Swal.fire({
+        icon: 'error',
+        title: `The price of this used vehicle cannot be less than $${minPrice} `,
+        showConfirmButton: false,
+        timer: 5500
+      })
+      return
+    }
+
     if(!data.cylinderCapacity){
       data.cylinderCapacity = null
     }

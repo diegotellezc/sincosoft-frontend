@@ -47,10 +47,10 @@ const VehicleCard = ({ vehicle, deleteVehicle, handleClickEdit }) => {
                 } transition-opacity duration-300 absolute bottom-0 left-0 w-full px-3 py-2 bg-white rounded-b-lg overflow-hidden`}
             >
                 <div className='flex items-center justify-between mb-3'>
-                    <h2 className="text-2xl text-primary-color font-bold my-2 text-center truncate capitalize">{vehicle.model}
+                    <h2 className="text-xl text-primary-color font-bold my-2 text-center truncate capitalize">{vehicle.model}
                     </h2>
 
-                    <h3 className='font-semibold text-2xl text-secondary-color ml-3'>${vehicle.price}
+                    <h3 className='font-semibold text-xl text-secondary-color ml-3'>${vehicle.price}
                         </h3>
                 </div>
                 

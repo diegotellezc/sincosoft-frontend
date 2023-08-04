@@ -99,10 +99,10 @@ const ModalBuyer = ({
             Buyer Document
           </label>
           <input
-            placeholder="only for used vehicles"
+            placeholder="Example: 1020468985"
             className="placeholder:text-xs border-[1px] rounded-sm bg-gray-100 p-1 focus:ring-1 focus:ring-primary-color focus:border-primary-color"
             id="buyerDocument"
-            type="text"
+            type="number"
             {...register("buyerDocument", {
               required: "This field is required",
               maxLength: {
